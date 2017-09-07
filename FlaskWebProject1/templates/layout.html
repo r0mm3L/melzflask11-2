@@ -1,52 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Rommel</title>
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+</head>
 
-    <title>React Touch Demos</title>
-    <meta name="viewport" content="width=device-width" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+<body>
+    <div id='react-container'></div>
+    <script type="text/babel">
 
-    <!-- Hamburger icons -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+const BUTTONS = ['Default', 'Primary', 'Success', 'Info', 'Warning', 'Danger'];
 
-    <!-- Zynga Scroller -->
-    <script type="text/javascript" src="http://zynga.github.io/scroller/src/Raf.js"></script>
-    <script type="text/javascript" src="http://zynga.github.io/scroller/src/Animate.js"></script>
-    <script type="text/javascript" src="http://zynga.github.io/scroller/src/Scroller.js"></script>
+function renderDropdownButton(title, i) {
+  return (
+    <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
+      <MenuItem eventKey="1">Action</MenuItem>
+      <MenuItem eventKey="2">Another action</MenuItem>
+      <MenuItem eventKey="3" active>Active Item</MenuItem>
+      <MenuItem divider />
+      <MenuItem eventKey="4">Separated link</MenuItem>
+    </DropdownButton>
+  );
+}
 
-    <!-- Stats.js -->
-    <script type="text/javascript" src="thirdparty/stats.min.js"></script>
+const buttonsInstance = (
+  <ButtonToolbar>{BUTTONS.map(renderDropdownButton)}</ButtonToolbar>
+);
 
-    <style type="text/css">
-      html,
-      body {
-        background: black;
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-        padding: 0;
-        width: 100%;
-      }
-      #react-root {
-        height: 100%;
-        width: 100%;
-      }
-      * {
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        user-select: none;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-      }
-    </style>
-  </head>
+ReactDOM.render(buttonsInstance, mountNode);
+    </script>
 
-  <body>
-    <div id="react-root">
-      <h1>If you see this, something is broken (or JS is not enabled).</h1>
+
+
+
+    <div class="container body-content">
+        {% block content %}{% endblock %}
+        <hr />
+        <footer>
+            <p>&copy; {{ year }} - Rommel</p>
+        </footer>
     </div>
-    <script type="text/javascript" src="build/main.js"></script>
-  </body>
+
+    <script src="/static/scripts/jquery-1.10.2.js"></script>
+    <script src="/static/scripts/bootstrap.js"></script>
+    <script src="/static/scripts/respond.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    {% block scripts %}{% endblock %}
+
+</body>
 </html>
